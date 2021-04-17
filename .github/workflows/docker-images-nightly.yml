@@ -1,18 +1,7 @@
 name: Docker Nightly Image CI
-
 on:
-  schedule:
-    - cron: "0 1 * * *"
-  workflow_dispatch:
-    inputs:
-      branch:
-        description: 'Name of the GitHub branch to create image off.'
-        required: true
-        default: 'master'
-      tag:
-        description: 'Name of the docker tag to create.'
-        required: true
-        default: 'nightly'
+  push:
+    branches: [ master ]
 
 jobs:
 
@@ -46,4 +35,4 @@ jobs:
           file: ./docker/images/n8n-custom/Dockerfile
           platforms: linux/amd64
           push: true
-          tags: n8nio/n8n:${{ github.event.inputs.tag || 'nightly' }}
+          tags: abysim/n8n:${{ github.event.inputs.tag || 'nightly' }}
