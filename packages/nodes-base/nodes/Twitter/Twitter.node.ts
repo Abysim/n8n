@@ -233,7 +233,8 @@ export class Twitter implements INodeType {
 							qs.geocode = `${values.latitude as string},${values.longitude as string},${values.distance}${values.radius}`;
 						}
 					}
-
+					qs.tweet_mode = 'extended';
+					
 					if (returnAll) {
 						responseData = await twitterApiRequestAllItems.call(this, 'statuses', 'GET', '/search/tweets.json', {}, qs);
 					} else {
